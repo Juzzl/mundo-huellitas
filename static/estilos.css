@@ -1,0 +1,11 @@
+:root {
+    --huellitas-primary: #4a7c59;
+}
+
+body {
+    background-color: #f7f5f2;
+}
+
+.navbar {
+    background-color: var(--huellitas-primary) !important;
+}
