@@ -1,0 +1,271 @@
+[
+{
+  "model": "servicios.servicio",
+  "pk": 2,
+  "fields": {
+    "nombre": "Grooming Spa",
+    "tipo": "ESTETICA",
+    "duracion": "03:00:00",
+    "descripcion": "Incluye:\r\n• Cepillado y baño de limpieza profunda\r\n• Baño de aroma y acondicionador\r\n• Secado y corte según la raza\r\n• Corte higiénico \r\n• Depilación y limpieza de oídos\r\n• Corte y limado de uñas\r\n• Hidratación de almohadillas\r\n• Revisión y vaciado de glándulas perianales\r\n• Talco, perfume y accesorio"
+  }
+},
+{
+  "model": "servicios.servicio",
+  "pk": 3,
+  "fields": {
+    "nombre": "Grooming Básico",
+    "tipo": "ESTETICA",
+    "duracion": "02:00:00",
+    "descripcion": "Incluye:\r\n• Cepillado\r\n• Baño y acondicionador\r\n• Secado\r\n• Corte según la raza\r\n• Corte higiénico\r\n• Limpieza de oídos\r\n• Depilación de oidos\r\n• Corte de uñas\r\n•Limpieza de plantares\r\n• Talco, perfume y accesorio"
+  }
+},
+{
+  "model": "servicios.servicio",
+  "pk": 5,
+  "fields": {
+    "nombre": "Corte de uñas",
+    "tipo": "ESTETICA",
+    "duracion": "00:25:00",
+    "descripcion": "El corte de uñas ayuda a que tu peludito camine con mayor comodidad y evita que las uñas demasiado largas se enganchen o le causen molestias respetando la longitud adecuada para cada mascota \r\n \r\n Si quieres darle un toque especial, por un costo adicional también podemos pintarle las uñitas con el color que más te guste. 💚💅"
+  }
+},
+{
+  "model": "servicios.servicio",
+  "pk": 6,
+  "fields": {
+    "nombre": "Vaciado de Perianales",
+    "tipo": "ESTETICA",
+    "duracion": "00:25:00",
+    "descripcion": "El vaciado de glándulas perianales se realiza cuando es necesario, con cuidado y respetando la comodidad de tu peludito. Estas glándulas pueden acumular secreción y causar molestias, asi que valoramos si requiere el procedimiento. Si observamos dolor, inflamación u otra señal fuera de lo normal, te lo comunicaremos para que lo revise un veterinario. 💚"
+  }
+},
+{
+  "model": "servicios.servicio",
+  "pk": 7,
+  "fields": {
+    "nombre": "Keratina",
+    "tipo": "ESTETICA",
+    "duracion": "01:00:00",
+    "descripcion": "El tratamiento de keratina es un cuidado adicional para el pelaje de tu peludito. 🐾 Se aplica durante el baño para ayudar a hidratarlo, suavizarlo y facilitar el cepillado, dejando el manto con una apariencia más brillante y cuidada. Es una linda opción para consentirlo y darle un toque extra a su sesión de grooming. 💚"
+  }
+},
+{
+  "model": "servicios.servicio",
+  "pk": 8,
+  "fields": {
+    "nombre": "Tintes",
+    "tipo": "ESTETICA",
+    "duracion": "03:00:00",
+    "descripcion": "El tinte para peluditos es un servicio adicional para darle un toque de color a su look. 🐾🎨 Podemos hacer detalles como mechoncitos, orejitas o colita, según el estilo que te gustaría. Antes de aplicarlo, revisamos el estado de su piel y pelaje y usamos productos formulados para mascotas, siempre procurando que esté cómodo durante el proceso. ¡Un toque divertido para que luzca aún más hermoso! 💚✨"
+  }
+},
+{
+  "model": "servicios.servicio",
+  "pk": 9,
+  "fields": {
+    "nombre": "Grooming para Gatos",
+    "tipo": "ESTETICA",
+    "duracion": "03:00:00",
+    "descripcion": "El grooming para gatitos incluye baño, secado y cepillado cuidadoso, además de limpieza de plantares, corte higiénico y una despuntada del pelaje según lo que necesite cada michi. 🐱🛁 También realizamos el corte de uñas y finalizamos con un accesorio decorativo para que se vea aún más lindo. Durante todo el proceso respetamos sus tiempos y hacemos pausas cuando las necesita, procurando que se sienta lo más cómodo posible. 💚✨"
+  }
+},
+{
+  "model": "servicios.servicio",
+  "pk": 10,
+  "fields": {
+    "nombre": "Limpieza de oidos",
+    "tipo": "ESTETICA",
+    "duracion": "00:30:00",
+    "descripcion": "La limpieza de oídos ayuda a mantener esta zona aseada y a retirar con cuidado la suciedad visible. 🐾👂 Realizamos la depilación y limpieza con productos adecuados para mascotas, respetando la sensibilidad de cada peludito y sin introducir objetos profundamente en el oído. Si notamos enrojecimiento, mal olor, secreción o molestias, te lo comentaremos para que pueda revisarlo un veterinario. 💚"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 2,
+  "fields": {
+    "servicio": 2,
+    "aplica_a": "1-4_KG",
+    "precio": "12500.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 3,
+  "fields": {
+    "servicio": 3,
+    "aplica_a": "1-4_KG",
+    "precio": "10000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 6,
+  "fields": {
+    "servicio": 2,
+    "aplica_a": "5-10_KG",
+    "precio": "15000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 7,
+  "fields": {
+    "servicio": 3,
+    "aplica_a": "5-10_KG",
+    "precio": "12500.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 8,
+  "fields": {
+    "servicio": 3,
+    "aplica_a": "11-15_KG",
+    "precio": "15000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 9,
+  "fields": {
+    "servicio": 3,
+    "aplica_a": "16-19_KG",
+    "precio": "18000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 10,
+  "fields": {
+    "servicio": 2,
+    "aplica_a": "11-15_KG",
+    "precio": "18000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 11,
+  "fields": {
+    "servicio": 2,
+    "aplica_a": "16-19_KG",
+    "precio": "21000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 12,
+  "fields": {
+    "servicio": 5,
+    "aplica_a": "1-4_KG",
+    "precio": "2500.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 13,
+  "fields": {
+    "servicio": 5,
+    "aplica_a": "5-10_KG",
+    "precio": "3000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 14,
+  "fields": {
+    "servicio": 5,
+    "aplica_a": "20-25_KG",
+    "precio": "5000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 15,
+  "fields": {
+    "servicio": 6,
+    "aplica_a": "UNICO",
+    "precio": "4000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 16,
+  "fields": {
+    "servicio": 7,
+    "aplica_a": "1-4_KG",
+    "precio": "15000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 17,
+  "fields": {
+    "servicio": 7,
+    "aplica_a": "5-10_KG",
+    "precio": "18000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 18,
+  "fields": {
+    "servicio": 7,
+    "aplica_a": "11-15_KG",
+    "precio": "21000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 19,
+  "fields": {
+    "servicio": 8,
+    "aplica_a": "1-4_KG",
+    "precio": "20000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 20,
+  "fields": {
+    "servicio": 8,
+    "aplica_a": "5-10_KG",
+    "precio": "23500.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 21,
+  "fields": {
+    "servicio": 8,
+    "aplica_a": "11-15_KG",
+    "precio": "27000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 22,
+  "fields": {
+    "servicio": 9,
+    "aplica_a": "1-4_KG",
+    "precio": "15000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 23,
+  "fields": {
+    "servicio": 9,
+    "aplica_a": "5-10_KG",
+    "precio": "18000.00"
+  }
+},
+{
+  "model": "servicios.tarifaservicio",
+  "pk": 24,
+  "fields": {
+    "servicio": 10,
+    "aplica_a": "UNICO",
+    "precio": "5000.00"
+  }
+}
+]

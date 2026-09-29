@@ -9,3 +9,486 @@ body {
 .navbar {
     background-color: var(--huellitas-primary) !important;
 }
+
+/* Página de servicios */
+.servicios-hero {
+    margin: 2rem 0 2.5rem;
+    padding: 2.5rem;
+    border-radius: 24px;
+    background: #e9efe6;
+    border: 1px solid #d9e5d7;
+}
+
+    .servicios-hero h1 {
+        color: #315a43;
+        font-weight: 700;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+    }
+
+    .servicios-hero p {
+        color: #536658 !important;
+        font-size: 1.1rem;
+        margin-bottom: 0;
+    }
+
+.servicio-card {
+    border: 1px solid #e8e1d5;
+    border-radius: 20px;
+    background: #fffdf9;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(49, 90, 67, 0.08);
+}
+
+    .servicio-card .card-body {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .servicio-card .card-title {
+        color: #315a43;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .servicio-card .card-text {
+        color: #4d544e;
+        line-height: 1.7;
+    }
+
+    .servicio-card h3 {
+        color: #315a43;
+        font-weight: 700;
+        padding-top: 1rem;
+        margin-top: auto !important;
+    }
+
+    .servicio-card .list-group-item {
+        background: transparent;
+        border-color: #e8e1d5;
+        padding: 0.85rem 0;
+        gap: 1rem;
+    }
+
+        .servicio-card .list-group-item strong {
+            color: #315a43;
+            white-space: nowrap;
+        }
+
+@media (max-width: 576px) {
+    .servicios-hero {
+        padding: 1.5rem;
+    }
+
+    .servicio-card .card-body {
+        padding: 1.5rem;
+    }
+}
+/* Página de servicios */
+.pagina-servicios {
+    --verde-profundo: #315a43;
+    --verde-medio: #4a7c59;
+    --verde-suave: #dce9da;
+    --arena-clara: #f6eedf;
+    --cafe-oscuro: #4b3e33;
+    padding-bottom: 4rem;
+}
+
+/* Banner crema */
+.servicios-bienvenida {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    min-height: 320px;
+    overflow: hidden;
+    margin: 1.5rem 0 4rem;
+    padding: 3rem 4rem;
+    border-left: 9px solid var(--verde-profundo);
+    border-radius: 24px;
+    background: #f1ecdf;
+}
+
+.servicios-bienvenida__texto {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+}
+
+.servicios-bienvenida__etiqueta {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #648168;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.servicios-bienvenida h1 {
+    margin-bottom: 1rem;
+    color: var(--verde-profundo);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 750;
+    line-height: 1.12;
+}
+
+.servicios-bienvenida p {
+    max-width: 540px;
+    margin-bottom: 1.5rem;
+    color: #564f45;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.servicios-bienvenida__boton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.8rem 1.3rem;
+    border-radius: 999px;
+    background: var(--verde-profundo);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+    .servicios-bienvenida__boton:hover {
+        background: #244533;
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+.servicios-bienvenida__adorno {
+    display: grid;
+    flex: 0 0 210px;
+    width: 210px;
+    height: 210px;
+    place-items: center;
+    border: 2px solid #c5d3bd;
+    border-radius: 50%;
+    background: #e3eadc;
+    font-size: 5rem;
+    transform: rotate(-12deg);
+}
+
+/* Huellitas animadas del banner */
+.servicios-bienvenida__huellitas span:nth-child(1) {
+    top: 7%;
+    left: 5%;
+    font-size: 1rem;
+}
+
+.servicios-bienvenida__huellitas span:nth-child(2) {
+    bottom: 8%;
+    left: 15%;
+    font-size: 1.4rem;
+    animation-delay: 0.5s;
+}
+
+.servicios-bienvenida__huellitas span:nth-child(3) {
+    top: 10%;
+    left: 35%;
+    font-size: 1.2rem;
+    animation-delay: 1s;
+}
+
+.servicios-bienvenida__huellitas span:nth-child(4) {
+    bottom: 7%;
+    left: 40%;
+    font-size: 1rem;
+    animation-delay: 1.5s;
+}
+
+.servicios-bienvenida__huellitas span:nth-child(5) {
+    top: 8%;
+    left: 58%;
+    font-size: 1.5rem;
+    animation-delay: 2s;
+}
+
+.servicios-bienvenida__huellitas span:nth-child(6) {
+    bottom: 12%;
+    left: 61%;
+    font-size: 1.2rem;
+    animation-delay: 2.5s;
+}
+
+.servicios-bienvenida__huellitas span:nth-child(7) {
+    top: 9%;
+    right: 8%;
+    font-size: 1rem;
+    animation-delay: 3s;
+}
+
+.servicios-bienvenida__huellitas span:nth-child(8) {
+    bottom: 8%;
+    right: 8%;
+    font-size: 1.4rem;
+    animation-delay: 3.5s;
+}
+
+.servicios-bienvenida__huellitas span:nth-child(9) {
+    top: 48%;
+    right: 32%;
+    font-size: 1.1rem;
+    animation-delay: 4s;
+}
+.servicios-bienvenida__huellitas span {
+    position: absolute;
+    opacity: 0.45;
+    animation: huellita-flota 5s ease-in-out infinite;
+}
+@keyframes huellita-flota {
+    0%, 100% {
+        transform: translateY(0) rotate(-15deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(2deg);
+    }
+}
+
+/* Encabezado del catálogo */
+.servicios-catalogo__encabezado {
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+}
+
+.servicios-catalogo__etiqueta {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    color: var(--verde-medio);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.servicios-catalogo h2 {
+    margin: 0;
+    color: var(--verde-profundo);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800;
+}
+
+    .servicios-catalogo h2::after {
+        content: "";
+        display: block;
+        width: 70px;
+        height: 4px;
+        margin: 0.8rem auto 1rem;
+        border-radius: 999px;
+        background: var(--verde-medio);
+    }
+
+.servicios-catalogo__encabezado p {
+    margin: 0;
+    color: var(--cafe-oscuro);
+    font-size: 1.05rem;
+}
+/*lados*/
+.servicios-catalogo__encabezado {
+    position: relative;
+}
+
+    .servicios-catalogo__encabezado::before,
+    .servicios-catalogo__encabezado::after {
+        content: "";
+        position: absolute;
+        top: 45%;
+        width: 22%;
+        height: 2px;
+        background: linear-gradient( 90deg, transparent, #a6bea5, transparent );
+    }
+
+    .servicios-catalogo__encabezado::before {
+        left: -28%;
+    }
+
+    .servicios-catalogo__encabezado::after {
+        right: -28%;
+    }
+
+@media (max-width: 767px) {
+    .servicios-catalogo__encabezado::before,
+    .servicios-catalogo__encabezado::after {
+        display: none;
+    }
+}
+/* Tarjetas de servicios */
+.servicio-ficha {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid #e4dccc;
+    border-radius: 22px;
+    background: #fffdf9;
+    box-shadow: 0 12px 28px #315a4312;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .servicio-ficha:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 38px #315a4325;
+    }
+
+.servicio-ficha__superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.6rem;
+    background: var(--verde-suave);
+    color: var(--verde-profundo);
+}
+
+.servicio-ficha__numero {
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.servicio-ficha__tipo {
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    background: #ffffffa8;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.servicio-ficha__contenido {
+    flex: 1;
+    padding: 1.8rem;
+}
+
+.servicio-ficha__icono {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    margin-bottom: 1rem;
+    border-radius: 16px;
+    background: var(--arena-clara);
+    font-size: 1.7rem;
+}
+
+.servicio-ficha h3 {
+    margin-bottom: 0.9rem;
+    color: var(--verde-profundo);
+    font-size: 1.6rem;
+    font-weight: 750;
+}
+
+.servicio-ficha__contenido p {
+    margin-bottom: 0;
+    color: var(--cafe-oscuro);
+    line-height: 1.7;
+}
+
+/* Tarifas desplegables */
+.servicio-ficha__tarifas {
+    border-top: 1px solid #e9e2d8;
+}
+
+    .servicio-ficha__tarifas summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.8rem;
+        color: var(--verde-profundo);
+        font-weight: 750;
+        cursor: pointer;
+        list-style: none;
+    }
+
+        .servicio-ficha__tarifas summary::-webkit-details-marker {
+            display: none;
+        }
+
+    .servicio-ficha__tarifas[open] summary {
+        background: var(--arena-clara);
+    }
+
+.servicio-ficha__flecha {
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.servicio-ficha__tarifas[open] .servicio-ficha__flecha {
+    transform: rotate(180deg);
+}
+
+.servicio-ficha__lista {
+    padding: 0.4rem 1.8rem 1.2rem;
+}
+
+.servicio-ficha__fila {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #eee8df;
+}
+
+    .servicio-ficha__fila:last-child {
+        border-bottom: 0;
+    }
+
+    .servicio-ficha__fila strong {
+        color: var(--verde-profundo);
+        white-space: nowrap;
+    }
+
+/* Pantallas pequeñas */
+@media (max-width: 767px) {
+    .servicios-bienvenida {
+        min-height: auto;
+        padding: 2rem;
+    }
+
+    .servicios-bienvenida__adorno {
+        display: none;
+    }
+
+    .servicios-catalogo__encabezado {
+        display: block;
+    }
+
+        .servicios-catalogo__encabezado p {
+            margin-top: 0.6rem;
+        }
+}
+
+/* Respeta la configuración de movimiento del dispositivo */
+@media (prefers-reduced-motion: reduce) {
+    .servicios-bienvenida__huellitas span {
+        animation: none;
+    }
+
+    .servicios-bienvenida__boton,
+    .servicio-ficha,
+    .servicio-ficha__flecha {
+        transition: none;
+    }
+
+        .servicios-bienvenida__boton:hover,
+        .servicio-ficha:hover {
+            transform: none;
+        }
+}
+/* Descripciones con lista: dos columnas */
+.servicio-ficha__contenido p:has(br) {
+    columns: 2;
+    column-gap: 2rem;
+    column-rule: 1px solid #e9e2d8;
+}
+
+@media (max-width: 767px) {
+    .servicio-ficha__contenido p:has(br) {
+        columns: 1;
+        column-rule: none;
+    }
+}
