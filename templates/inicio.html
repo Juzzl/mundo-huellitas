@@ -1,10 +1,279 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
 
-{% block titulo %}Inicio{% endblock %}
+{% block titulo %}Inicio | Mi Mundo de Huellitas{% endblock %}
 
 {% block contenido %}
-    <div class="text-center py-5">
-        <h1>Bienvenido a Mi Mundo de Huellitas</h1>
-        <p class="lead">Sistema de gestión de citas, guardería y estética canina.</p>
+<div class="pagina-inicio">
+
+    <!-- Portada -->
+    <header class="inicio-portada">
+        <div class="inicio-portada__texto">
+            <span class="inicio-etiqueta">ESTÉTICA CANINA Y FELINA</span>
+
+            <h1>Un mundo de cuidados para tu mejor amigo.</h1>
+
+            <p>
+                Baños, grooming y mucho cariño para esas huellitas
+                que hacen más bonita nuestra vida.
+            </p>
+
+            <div class="inicio-redes__enlaces">
+                <a href="https://www.instagram.com/mi_mundodehuellitas/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <svg class="inicio-red-icono"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.8"
+                         aria-hidden="true"
+                         focusable="false">
+                        <rect x="3" y="3" width="18" height="18" rx="5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle cx="17.5" cy="6.5" r="1"
+                                fill="currentColor" stroke="none" />
+                    </svg>
+
+                    <span>Instagram</span>
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+                <a href="https://www.facebook.com/share/1Lrv2srv3p/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <svg class="inicio-red-icono"
+                         viewBox="0 0 24 24"
+                         fill="currentColor"
+                         aria-hidden="true"
+                         focusable="false">
+                        <path d="M22 12a10 10 0 1 0-11.563 9.879v-6.988H7.898V12h2.539V9.797c0-2.506 1.493-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.63.772-1.63 1.563V12h2.773l-.443 2.89h-2.33v6.989A10.003 10.003 0 0 0 22 12Z" />
+                    </svg>
+
+                    <span>Facebook</span>
+                    <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+
+            <div class="inicio-portada__nota">
+                <span aria-hidden="true">♡</span>
+                Cinco años cuidando a quienes más quieres.
+            </div>
+        </div>
+
+        <div class="inicio-portada__imagen">
+            <img src="{% static 'imagenes/inicio-huellitas.png' %}"
+                 alt="Cuatro cachorritos junto al letrero de Mi Mundo de Huellitas"
+                 width="1536"
+                 height="1024"
+                 fetchpriority="high">
+        </div>
+    </header>
+
+    <!-- Beneficios -->
+    <div class="inicio-beneficios" aria-label="Nuestra atención">
+        <div>
+            <span aria-hidden="true">♡</span>
+            <strong>Atención con cariño</strong>
+        </div>
+
+        <div>
+            <span aria-hidden="true">🐈</span>
+            <strong>Perros y gatos</strong>
+        </div>
+
+        <div>
+            <span aria-hidden="true">🚐</span>
+            <strong>Transporte disponible</strong>
+        </div>
     </div>
+
+    <!-- Servicios -->
+    <section class="inicio-cuidados" aria-labelledby="titulo-cuidados">
+        <div class="inicio-encabezado">
+            <span class="inicio-etiqueta">UN CUIDADO PARA CADA HUELLITA</span>
+            <h2 id="titulo-cuidados">Pequeños detalles, mucho bienestar.</h2>
+            <p>Descubre el cuidado que mejor se adapta a tu mascota.</p>
+        </div>
+
+        <div class="inicio-cuidados__lista">
+            <article class="inicio-cuidado">
+                <span class="inicio-cuidado__icono" aria-hidden="true">🛁</span>
+                <h3>Baños y mantenimiento</h3>
+
+                <p>
+                    Limpieza y cuidados para mantener a tu peludito
+                    fresco, cómodo y listo para recibir abrazos.
+                </p>
+
+                <a href="{% url 'lista_servicios' %}">
+                    Explorar servicios
+                    <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+            <article class="inicio-cuidado">
+                <span class="inicio-cuidado__icono" aria-hidden="true">✂️</span>
+                <h3>Grooming y estilo</h3>
+
+                <p>
+                    Cortes y cuidados del pelaje para resaltar su encanto,
+                    según sus necesidades y el estilo que buscas.
+                </p>
+
+                <a href="{% url 'lista_servicios' %}">
+                    Explorar servicios
+                    <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+            <article class="inicio-cuidado">
+                <span class="inicio-cuidado__icono" aria-hidden="true">🐈</span>
+                <h3>Cuidados para gatitos</h3>
+
+                <p>
+                    Nuestros amigos felinos también tienen su espacio,
+                    con servicios de estética y atención cariñosa.
+                </p>
+
+                <a href="{% url 'lista_servicios' %}">
+                    Explorar servicios
+                    <span aria-hidden="true">→</span>
+                </a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Sobre nosotros -->
+    <section class="inicio-nosotros" aria-labelledby="titulo-nosotros">
+        <div class="inicio-nosotros__detalle">
+            <span class="inicio-etiqueta">CONOCE NUESTRO MUNDO</span>
+
+            <h2 id="titulo-nosotros">
+                Aquí, cada huellita tiene un lugar especial.
+            </h2>
+
+            <div class="inicio-experiencia">
+                <strong>5</strong>
+                <span>
+                    años de cariño,<br>
+                    cuidados y confianza
+                </span>
+            </div>
+
+            <blockquote class="inicio-nosotros__frase">
+                “Nos confías una parte de tu familia. Nosotros la
+                recibimos como parte de la nuestra.”
+            </blockquote>
+        </div>
+
+        <div class="inicio-historia">
+            <span class="inicio-etiqueta">NUESTRA HISTORIA</span>
+            <h3>Un sueño que empezó con amor.</h3>
+
+            <p>
+                Mi Mundo de Huellitas nació del deseo de crear un espacio
+                donde cada mascota se sienta bienvenida. Aquí celebramos
+                sus personalidades, sus ocurrencias y esas pequeñas
+                huellitas que dejan una marca enorme en nuestro corazón.
+            </p>
+
+            <div class="inicio-historia__detalle">
+                <span aria-hidden="true">♡</span>
+
+                <div>
+                    <h4>Cariño en cada visita</h4>
+                    <p>
+                        Nos tomamos el tiempo de conocer a tu peludito
+                        y atenderlo con paciencia, respetando su ritmo
+                        y sus necesidades.
+                    </p>
+                </div>
+            </div>
+
+            <div class="inicio-historia__detalle">
+                <span aria-hidden="true">✂</span>
+
+                <div>
+                    <h4>Dedicación en cada detalle</h4>
+                    <p>
+                        Desde un baño hasta un cambio de look, cuidamos
+                        cada paso para que se vea hermoso y se sienta cómodo.
+                    </p>
+                </div>
+            </div>
+
+            <div class="inicio-historia__cierre">
+                Gracias por dejarnos cuidar de tu familia. ♡
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Transporte -->
+    <section class="inicio-transporte" aria-labelledby="titulo-transporte">
+        <span class="inicio-transporte__icono" aria-hidden="true">🚐</span>
+
+        <div>
+            <span class="inicio-etiqueta">MÁS CERCA DE TI</span>
+            <h2 id="titulo-transporte">También vamos por tu peludito.</h2>
+
+            <p>
+                Ofrecemos transporte a cualquier lugar. Escríbenos para
+                coordinar el recorrido y consultar el costo según tu ubicación.
+            </p>
+        </div>
+
+        <a class="inicio-boton"
+           href="https://wa.me/50672637460?text=Hola%2C%20quiero%20consultar%20el%20transporte%20para%20mi%20mascota."
+           target="_blank"
+           rel="noopener noreferrer">
+            Consultar transporte
+            <span aria-hidden="true">↗</span>
+        </a>
+    </section>
+
+    <!-- Contacto -->
+    <section class="inicio-contacto" aria-labelledby="titulo-contacto">
+        <div class="inicio-contacto__invitacion">
+            <span class="inicio-etiqueta">TE ESPERAMOS</span>
+            <h2 id="titulo-contacto">Su próxima visita empieza aquí.</h2>
+
+            <p>
+                Cuéntanos qué cuidado necesita tu mascota y
+                consultemos juntos la disponibilidad.
+            </p>
+
+            <a class="inicio-boton"
+               href="https://wa.me/50672637460?text=Hola%2C%20quiero%20consultar%20disponibilidad%20para%20una%20cita."
+               target="_blank"
+               rel="noopener noreferrer">
+                Escribir por WhatsApp
+                <span aria-hidden="true">↗</span>
+            </a>
+        </div>
+
+        <div class="inicio-contacto__datos">
+            <div>
+                <span class="inicio-etiqueta">VISÍTANOS</span>
+                <p>San Miguel de Desamparados, San José.</p>
+            </div>
+
+            <div>
+                <span class="inicio-etiqueta">HORARIO</span>
+                <p>
+                    Lunes a sábado<br>
+                    8:00 a. m. a 5:30 p. m.
+                </p>
+            </div>
+
+            <div>
+                <span class="inicio-etiqueta">CONTACTO</span><br>
+                <a href="tel:+50672637460">7263-7460</a>
+            </div>
+        </div>
+    </section>
+
+</div>
 {% endblock %}
