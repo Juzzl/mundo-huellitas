@@ -1,0 +1,78 @@
+{% extends "citas/base.html" %}
+{% load static %}
+{% block title %}Agenda{% endblock %}
+{% block content %}
+<div class="pagina-citas">
+
+  <section class="citas-bienvenida">
+    <div>
+      <span class="citas-bienvenida__etiqueta">Agenda</span>
+      <h1>Agenda de citas</h1>
+      <p>Consulta, confirma y organiza las citas de las mascotas por fecha y estado.</p>
+      <a class="citas-boton" href="{% url 'citas_crear' %}">+ Nueva cita</a>
+    </div>
+    <div class="citas-bienvenida__adorno" aria-hidden="true">🐾</div>
+  </section>
+
+  {% if messages %}
+    <ul class="citas-mensajes">
+      {% for m in messages %}<li class="citas-mensaje {{ m.tags }}">{{ m }}</li>{% endfor %}
+    </ul>
+  {% endif %}
+
+  <form method="get" class="citas-filtros">
+    <label>Fecha <input type="date" name="fecha" value="{{ fecha_sel }}"></label>
+    <label>Estado
+      <select name="estado">
+        <option value="">Todos</option>
+        {% for valor, nombre in estados %}
+          <option value="{{ valor }}" {% if valor == estado_sel %}selected{% endif %}>{{ nombre }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <button class="citas-boton" type="submit">Filtrar</button>
+    <a class="citas-boton citas-boton--suave" href="{% url 'citas_lista' %}">Limpiar</a>
+  </form>
+
+  <div class="citas-tabla-contenedor">
+    <table class="citas-tabla">
+      <thead>
+        <tr><th>Fecha</th><th>Horario</th><th>Mascota</th><th>Servicio</th><th>Atiende</th><th>Estado</th><th>Acciones</th></tr>
+      </thead>
+      <tbody>
+      {% for c in citas %}
+        <tr>
+          <td data-label="Fecha">{{ c.fecha_hora_inicio|date:"d/m/Y" }}</td>
+          <td data-label="Horario">{{ c.fecha_hora_inicio|time:"H:i" }} – {{ c.fecha_hora_fin|time:"H:i" }}</td>
+          <td data-label="Mascota">{{ c.mascota }}</td>
+          <td data-label="Servicio">{{ c.servicio }}</td>
+          <td data-label="Atiende">{{ c.empleado|default:"Sin asignar" }}</td>
+          <td data-label="Estado"><span class="citas-estado citas-estado--{{ c.estado }}">{{ c.get_estado_display }}</span></td>
+          <td data-label="Acciones" class="citas-acciones">
+            {% if c.estado != "COMPLETADA" and c.estado != "CANCELADA" %}
+              <a class="citas-boton citas-boton--suave citas-boton--chico" href="{% url 'citas_editar' c.pk %}">Editar</a>
+            {% endif %}
+            {% if c.estado == "PENDIENTE" %}
+              <form method="post" action="{% url 'citas_estado' c.pk 'CONFIRMADA' %}">{% csrf_token %}<button class="citas-boton citas-boton--chico" type="submit">Confirmar</button></form>
+            {% elif c.estado == "CONFIRMADA" %}
+              <form method="post" action="{% url 'citas_estado' c.pk 'EN_PROCESO' %}">{% csrf_token %}<button class="citas-boton citas-boton--chico" type="submit">Iniciar</button></form>
+            {% elif c.estado == "EN_PROCESO" %}
+              <form method="post" action="{% url 'citas_estado' c.pk 'COMPLETADA' %}">{% csrf_token %}<button class="citas-boton citas-boton--chico" type="submit">Completar</button></form>
+            {% endif %}
+            {% if c.estado == "PENDIENTE" or c.estado == "CONFIRMADA" %}
+              <form method="post" action="{% url 'citas_estado' c.pk 'CANCELADA' %}" data-confirm="¿Cancelar esta cita?">{% csrf_token %}<button class="citas-boton citas-boton--peligro citas-boton--chico" type="submit">Cancelar</button></form>
+            {% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="7" class="citas-vacio">No hay citas para mostrar.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'citas/js/citas.js' %}"></script>
+{% endblock %}
