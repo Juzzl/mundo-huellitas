@@ -1,0 +1,251 @@
+.pagina-clientes {
+    --verde-profundo: #315a43;
+    --verde-medio: #4a7c59;
+    --verde-suave: #dce9da;
+    --arena-clara: #f6eedf;
+    --crema: #f1ecdf;
+    --cafe-oscuro: #4b3e33;
+    --borde: #e4dccc;
+    padding-bottom: 4rem;
+    color: #564f45;
+}
+
+/* Banner */
+.clientes-bienvenida {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: 1.5rem 0 2rem;
+    padding: 2.2rem 3rem;
+    border-left: 9px solid var(--verde-profundo);
+    border-radius: 24px;
+    background: var(--crema);
+}
+
+.clientes-bienvenida__etiqueta {
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    color: #648168;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.clientes-bienvenida h1 {
+    margin: 0 0 0.8rem;
+    color: var(--verde-profundo);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 750;
+    line-height: 1.12;
+}
+
+.clientes-bienvenida p {
+    max-width: 540px;
+    margin: 0 0 1.4rem;
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+.clientes-bienvenida__adorno {
+    display: grid;
+    flex: 0 0 150px;
+    width: 150px;
+    height: 150px;
+    place-items: center;
+    border: 2px solid #c5d3bd;
+    border-radius: 50%;
+    background: #e3eadc;
+    font-size: 3.6rem;
+    transform: rotate(-12deg);
+}
+
+/* Botones */
+.clientes-boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.3rem;
+    border: 1px solid var(--verde-profundo);
+    border-radius: 999px;
+    background: var(--verde-profundo);
+    color: #fff;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.clientes-boton:hover {
+    background: #244533;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.clientes-boton--suave {
+    background: transparent;
+    color: var(--verde-profundo);
+}
+
+.clientes-boton--suave:hover {
+    background: var(--verde-suave);
+    color: var(--verde-profundo);
+}
+
+.clientes-boton--chico {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+}
+
+/* Buscador */
+.clientes-buscador {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid var(--borde);
+    border-radius: 22px;
+    background: #fffdf9;
+}
+
+.clientes-buscador label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    color: var(--verde-profundo);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.clientes-buscador input {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--cafe-oscuro);
+    font: inherit;
+}
+
+.clientes-buscador input:focus {
+    border-color: var(--verde-medio);
+    outline: 3px solid #4a7c5933;
+}
+
+/* Tabla */
+.clientes-tabla-contenedor {
+    overflow-x: auto;
+    border: 1px solid var(--borde);
+    border-radius: 22px;
+    background: #fffdf9;
+    box-shadow: 0 12px 28px #315a4312;
+}
+
+.clientes-tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.clientes-tabla th {
+    padding: 1rem 1.2rem;
+    background: var(--verde-suave);
+    color: var(--verde-profundo);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.clientes-tabla td {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid #eee8df;
+    vertical-align: middle;
+}
+
+.clientes-tabla tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.clientes-tabla tbody tr:hover {
+    background: var(--arena-clara);
+}
+
+.clientes-vacio {
+    padding: 2.5rem 1rem;
+    color: #7a7468;
+    text-align: center;
+}
+
+.clientes-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+/* Pantallas pequeñas: la tabla se vuelve tarjetas */
+@media (max-width: 767px) {
+    .clientes-bienvenida {
+        padding: 1.6rem;
+    }
+
+    .clientes-bienvenida__adorno {
+        display: none;
+    }
+
+    .clientes-tabla thead {
+        display: none;
+    }
+
+    .clientes-tabla,
+    .clientes-tabla tbody,
+    .clientes-tabla tr {
+        display: block;
+        width: 100%;
+    }
+
+    .clientes-tabla tr {
+        padding: 0.8rem 1.2rem;
+        border-bottom: 1px solid var(--borde);
+    }
+
+    .clientes-tabla td {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.35rem 0;
+        border: 0;
+        text-align: right;
+    }
+
+    .clientes-tabla td::before {
+        content: attr(data-label);
+        color: var(--verde-profundo);
+        font-weight: 700;
+        text-align: left;
+    }
+
+    .clientes-tabla td.clientes-vacio {
+        display: block;
+        text-align: center;
+    }
+
+    .clientes-tabla td.clientes-vacio::before {
+        content: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .clientes-boton {
+        transition: none;
+    }
+
+    .clientes-boton:hover {
+        transform: none;
+    }
+}

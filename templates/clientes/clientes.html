@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Clientes · Mi Mundo de Huellitas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/citas.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<div class="pagina-citas">
+
+  <section class="citas-bienvenida">
+    <div>
+      <span class="citas-bienvenida__etiqueta">Clientes</span>
+      <h1>Clientes y mascotas</h1>
+      <p>Busca a las mascotas registradas y revisa cuántas citas tienen.</p>
+    </div>
+    <div class="citas-bienvenida__adorno" aria-hidden="true">🐕</div>
+  </section>
+
+  <form method="get" class="citas-filtros">
+    <label>Buscar por nombre
+      <input type="search" name="q" value="{{ q }}" placeholder="Ej. Max">
+    </label>
+    <button class="citas-boton" type="submit">Buscar</button>
+    <a class="citas-boton citas-boton--suave" href="{% url 'clientes' %}">Limpiar</a>
+  </form>
+
+  <div class="citas-tabla-contenedor">
+    <table class="citas-tabla">
+      <thead>
+        <tr><th>Mascota</th><th>Citas registradas</th></tr>
+      </thead>
+      <tbody>
+      {% for m in mascotas %}
+        <tr>
+          <td data-label="Mascota">{{ m.nombre }}</td>
+          <td data-label="Citas">{{ m.total_citas }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="2" class="citas-vacio">No hay mascotas para mostrar.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}
