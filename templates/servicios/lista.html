@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block titulo %}Servicios | Mi Mundo de Huellitas{% endblock %}
+
+{% block contenido %}
+<div class="pagina-servicios">
+  
+
+    <header class="servicios-bienvenida">
+        <div class="servicios-bienvenida__huellitas" aria-hidden="true">
+            <span>🐾</span>
+            <span>🐾</span>
+            <span>🐾</span>
+            <span>🐾</span>
+            <span>🐾</span>
+            <span>🐾</span>
+            <span>🐾</span>
+            <span>🐾</span>
+            <span>🐾</span>
+        </div>
+        <div class="servicios-bienvenida__texto">
+            <span class="servicios-bienvenida__etiqueta">
+                MI MUNDO DE HUELLITAS
+            </span>
+
+            <h1>Un cuidado especial para cada huellita</h1>
+
+            <p>
+                Baños, grooming y pequeños detalles para que tu mascota
+                se sienta tan bien como se ve.
+            </p>
+
+            <a href="#catalogo" class="servicios-bienvenida__boton">
+                Conocer servicios <span aria-hidden="true">↓</span>
+            </a>
+        </div>
+
+        <div class="servicios-bienvenida__adorno" aria-hidden="true">
+            🐶
+        </div>
+    </header>
+
+    <section id="catalogo"
+             class="servicios-catalogo"
+             aria-labelledby="titulo-catalogo">
+
+        <div class="servicios-catalogo__encabezado">
+            <div>
+                <span class="servicios-catalogo__etiqueta">
+                    Hecho con cariño
+                </span>
+                <h2 id="titulo-catalogo">Nuestros servicios</h2>
+            </div>
+
+            <p>Cuidados pensados para consentir cada huellita.</p>
+        </div>
+
+        <div class="row g-4">
+            {% for servicio in servicios %}
+            <div class="col-12 col-lg-6">
+                <article class="servicio-ficha">
+
+                    <div class="servicio-ficha__superior">
+                        <span class="servicio-ficha__numero">
+                            {{ forloop.counter|stringformat:"02d" }}
+                        </span>
+                        <span class="servicio-ficha__tipo">
+                            {{ servicio.get_tipo_display }}
+                        </span>
+                    </div>
+
+                    <div class="servicio-ficha__contenido">
+                        <div class="servicio-ficha__icono" aria-hidden="true">
+                            🐶
+                        </div>
+
+                        <h3>{{ servicio.nombre }}</h3>
+
+                        {% if servicio.descripcion %}
+                        <p>{{ servicio.descripcion|linebreaksbr }}</p>
+                        {% endif %}
+                    </div>
+
+                    <details class="servicio-ficha__tarifas">
+                        <summary>
+                            <span>Ver tarifas</span>
+                            <span class="servicio-ficha__flecha"
+                                  aria-hidden="true">⌄</span>
+                        </summary>
+
+                        <div class="servicio-ficha__lista">
+                            {% for tarifa in servicio.tarifas.all %}
+                            <div class="servicio-ficha__fila">
+                                <span>{{ tarifa.get_aplica_a_display }}</span>
+                                <strong>₡{{ tarifa.precio|floatformat:0 }}</strong>
+                            </div>
+                            {% empty %}
+                            <p>Consulta el precio de este servicio.</p>
+                            {% endfor %}
+                        </div>
+                    </details>
+
+                </article>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="servicios-vacio">
+                    Pronto publicaremos nuestros servicios.
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
+{% endblock %}
