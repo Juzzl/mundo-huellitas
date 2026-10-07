@@ -11,38 +11,6 @@
     --peligro: #8a3a30;
 }
 
-body.citas-base {
-    margin: 0;
-    background: #f7f5f2;
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-}
-
-.citas-barra {
-    background: var(--verde-medio);
-    color: #fff;
-}
-
-.citas-barra__interior {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0.9rem 1rem;
-}
-
-.citas-barra a {
-    color: #fff;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.citas-contenedor {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
 .pagina-citas {
     padding-bottom: 4rem;
     color: var(--texto);

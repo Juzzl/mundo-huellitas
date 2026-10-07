@@ -1,7 +1,9 @@
-{% extends "citas/base.html" %}
+{% extends "base.html" %}
 {% load static %}
-{% block title %}{{ titulo }}{% endblock %}
-{% block content %}
+
+{% block titulo %}{{ titulo }} · Mi Mundo de Huellitas{% endblock %}
+
+{% block contenido %}
 <div class="pagina-citas">
 
   <section class="citas-bienvenida">
@@ -38,6 +40,7 @@
 
 </div>
 {% endblock %}
+
 {% block scripts %}
 <script src="{% static 'citas/js/citas.js' %}"></script>
 {% endblock %}

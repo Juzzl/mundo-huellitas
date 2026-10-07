@@ -1,7 +1,13 @@
-{% extends "citas/base.html" %}
+{% extends "base.html" %}
 {% load static %}
-{% block title %}Agenda{% endblock %}
-{% block content %}
+
+{% block titulo %}Agenda de citas · Mi Mundo de Huellitas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/citas.css' %}">
+{% endblock %}
+
+{% block contenido %}
 <div class="pagina-citas">
 
   <section class="citas-bienvenida">
@@ -73,6 +79,7 @@
 
 </div>
 {% endblock %}
+
 {% block scripts %}
 <script src="{% static 'citas/js/citas.js' %}"></script>
 {% endblock %}
