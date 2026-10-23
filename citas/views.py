@@ -28,7 +28,11 @@ def lista_citas(request):
 
 
 def crear_cita(request):
-    form = CitaForm(request.POST or None)
+    inicial = {}
+    mascota = request.GET.get("mascota", "")
+    if mascota.isdigit():
+        inicial["mascota"] = mascota
+    form = CitaForm(request.POST or None, initial=inicial)
     if request.method == "POST" and form.is_valid():
         form.save()
         messages.success(request, "Cita agendada correctamente.")

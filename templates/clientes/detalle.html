@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ cliente.nombre }} · Mi Mundo de Huellitas{% endblock %}
+
+{% block contenido %}
+<div class="pagina-clientes">
+
+  <section class="clientes-bienvenida">
+    <div>
+      <span class="clientes-bienvenida__etiqueta">Ficha del cliente</span>
+      <h1>{{ cliente.nombre }}</h1>
+      <div class="clientes-bienvenida__acciones">
+        <a class="clientes-boton" href="{% url 'clientes_editar' cliente.pk %}">Editar datos</a>
+        <a class="clientes-boton clientes-boton--peligro" href="{% url 'clientes_eliminar' cliente.pk %}">Eliminar</a>
+        <a class="clientes-boton clientes-boton--suave" href="{% url 'clientes' %}">Volver a clientes</a>
+      </div>
+    </div>
+    <div class="clientes-bienvenida__adorno" aria-hidden="true">🐕</div>
+  </section>
+
+  {% include "clientes/_mensajes.html" %}
+
+  <section class="clientes-datos">
+    <div>
+      <span class="clientes-etiqueta">Teléfono</span>
+      {{ cliente.telefono }}
+    </div>
+    <div>
+      <span class="clientes-etiqueta">Correo</span>
+      {% if cliente.email %}{{ cliente.email }}{% else %}<span class="clientes-suave">Sin correo</span>{% endif %}
+    </div>
+    <div>
+      <span class="clientes-etiqueta">Dirección</span>
+      {% if cliente.direccion %}{{ cliente.direccion }}{% else %}<span class="clientes-suave">Sin dirección</span>{% endif %}
+    </div>
+  </section>
+
+  <section class="clientes-seccion">
+    <div class="clientes-seccion__encabezado">
+      <h2>Mascotas</h2>
+      <a class="clientes-boton clientes-boton--chico" href="{% url 'mascotas_crear' cliente.pk %}">+ Agregar mascota</a>
+    </div>
+
+    <div class="clientes-tabla-contenedor">
+      <table class="clientes-tabla">
+        <thead>
+          <tr><th>Nombre</th><th>Especie</th><th>Raza</th><th>Tamaño</th><th>Nacimiento</th><th>Citas</th><th>Acciones</th></tr>
+        </thead>
+        <tbody>
+        {% for m in mascotas %}
+          <tr>
+            <td data-label="Nombre"><strong>{{ m.nombre }}</strong></td>
+            <td data-label="Especie">{{ m.especie }}</td>
+            <td data-label="Raza">{% if m.raza %}{{ m.raza }}{% else %}<span class="clientes-suave">Sin dato</span>{% endif %}</td>
+            <td data-label="Tamaño">{% if m.tamano %}{{ m.get_tamano_display }}{% else %}<span class="clientes-suave">Sin dato</span>{% endif %}</td>
+            <td data-label="Nacimiento">{% if m.fecha_nacimiento %}{{ m.fecha_nacimiento|date:"d/m/Y" }}{% else %}<span class="clientes-suave">Sin dato</span>{% endif %}</td>
+            <td data-label="Citas">{{ m.total_citas }}</td>
+            <td data-label="Acciones" class="clientes-acciones">
+              <a class="clientes-boton clientes-boton--chico" href="{% url 'citas_crear' %}?mascota={{ m.pk }}">Agendar cita</a>
+              <a class="clientes-boton clientes-boton--suave clientes-boton--chico" href="{% url 'mascotas_editar' m.pk %}">Editar</a>
+              <a class="clientes-boton clientes-boton--peligro clientes-boton--chico" href="{% url 'mascotas_eliminar' m.pk %}">Eliminar</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="7" class="clientes-vacio">Este cliente todavía no tiene mascotas registradas.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="clientes-seccion">
+    <div class="clientes-seccion__encabezado">
+      <h2>Citas recientes</h2>
+      <a class="clientes-boton clientes-boton--suave clientes-boton--chico" href="{% url 'citas_lista' %}">Ir a la agenda</a>
+    </div>
+
+    <div class="clientes-tabla-contenedor">
+      <table class="clientes-tabla">
+        <thead>
+          <tr><th>Fecha</th><th>Horario</th><th>Mascota</th><th>Servicio</th><th>Atiende</th><th>Estado</th><th>Acciones</th></tr>
+        </thead>
+        <tbody>
+        {% for c in citas %}
+          <tr>
+            <td data-label="Fecha">{{ c.fecha_hora_inicio|date:"d/m/Y" }}</td>
+            <td data-label="Horario">{{ c.fecha_hora_inicio|time:"H:i" }} a {{ c.fecha_hora_fin|time:"H:i" }}</td>
+            <td data-label="Mascota">{{ c.mascota.nombre }}</td>
+            <td data-label="Servicio">{{ c.servicio.nombre }}</td>
+            <td data-label="Atiende">{% if c.empleado %}{{ c.empleado.nombre }}{% else %}<span class="clientes-suave">Sin asignar</span>{% endif %}</td>
+            <td data-label="Estado"><span class="citas-estado citas-estado--{{ c.estado }}">{{ c.get_estado_display }}</span></td>
+            <td data-label="Acciones" class="clientes-acciones">
+              {% if c.estado != "COMPLETADA" and c.estado != "CANCELADA" %}
+                <a class="clientes-boton clientes-boton--suave clientes-boton--chico" href="{% url 'citas_editar' c.pk %}">Editar</a>
+              {% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="7" class="clientes-vacio">Este cliente todavía no tiene citas.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+{% endblock %}
