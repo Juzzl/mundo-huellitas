@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block titulo %}Iniciar sesión · Mi Mundo de Huellitas{% endblock %}
+
+{% block contenido %}
+<div class="pagina-citas">
+
+  <section class="citas-formulario citas-formulario--angosto">
+    <span class="citas-bienvenida__etiqueta">Acceso</span>
+    <h1 class="citas-titulo">Iniciar sesión</h1>
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}">
+
+      {% if form.errors %}
+        <p class="citas-error">Usuario o contraseña incorrectos. Inténtalo de nuevo.</p>
+      {% endif %}
+
+      <div class="citas-campo">
+        <label for="id_username">Usuario</label>
+        {{ form.username }}
+      </div>
+
+      <div class="citas-campo citas-campo--separado">
+        <label for="id_password">Contraseña</label>
+        {{ form.password }}
+      </div>
+
+      <div class="citas-formulario__acciones">
+        <button class="citas-boton" type="submit">Entrar</button>
+      </div>
+    </form>
+  </section>
+
+</div>
+{% endblock %}

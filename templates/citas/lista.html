@@ -3,19 +3,19 @@
 
 {% block titulo %}Agenda de citas · Mi Mundo de Huellitas{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/citas.css' %}">
-{% endblock %}
-
 {% block contenido %}
 <div class="pagina-citas">
 
   <section class="citas-bienvenida">
     <div>
       <span class="citas-bienvenida__etiqueta">Agenda</span>
-      <h1>Agenda de citas</h1>
-      <p>Consulta, confirma y organiza las citas de las mascotas por fecha y estado.</p>
-      <a class="citas-boton" href="{% url 'citas_crear' %}">+ Nueva cita</a>
+      <h1>{% if rol == "administrador" %}Agenda de citas{% else %}Mis citas{% endif %}</h1>
+      {% if rol == "administrador" %}
+        <p>Consulta, confirma y organiza las citas de las mascotas por fecha y estado.</p>
+        <a class="citas-boton" href="{% url 'citas_crear' %}">+ Nueva cita</a>
+      {% else %}
+        <p>Estas son las citas que tienes asignadas. Inicia y completa cada una desde aquí.</p>
+      {% endif %}
     </div>
     <div class="citas-bienvenida__adorno" aria-hidden="true">🐾</div>
   </section>
@@ -55,18 +55,23 @@
           <td data-label="Atiende">{{ c.empleado|default:"Sin asignar" }}</td>
           <td data-label="Estado"><span class="citas-estado citas-estado--{{ c.estado }}">{{ c.get_estado_display }}</span></td>
           <td data-label="Acciones" class="citas-acciones">
-            {% if c.estado != "COMPLETADA" and c.estado != "CANCELADA" %}
-              <a class="citas-boton citas-boton--suave citas-boton--chico" href="{% url 'citas_editar' c.pk %}">Editar</a>
+            {% if rol == "administrador" %}
+              {% if c.estado != "COMPLETADA" and c.estado != "CANCELADA" %}
+                <a class="citas-boton citas-boton--suave citas-boton--chico" href="{% url 'citas_editar' c.pk %}">Editar</a>
+              {% endif %}
+              {% if c.estado == "PENDIENTE" %}
+                <form method="post" action="{% url 'citas_estado' c.pk 'CONFIRMADA' %}">{% csrf_token %}<button class="citas-boton citas-boton--chico" type="submit">Confirmar</button></form>
+              {% endif %}
             {% endif %}
-            {% if c.estado == "PENDIENTE" %}
-              <form method="post" action="{% url 'citas_estado' c.pk 'CONFIRMADA' %}">{% csrf_token %}<button class="citas-boton citas-boton--chico" type="submit">Confirmar</button></form>
-            {% elif c.estado == "CONFIRMADA" %}
+            {% if c.estado == "CONFIRMADA" %}
               <form method="post" action="{% url 'citas_estado' c.pk 'EN_PROCESO' %}">{% csrf_token %}<button class="citas-boton citas-boton--chico" type="submit">Iniciar</button></form>
             {% elif c.estado == "EN_PROCESO" %}
               <form method="post" action="{% url 'citas_estado' c.pk 'COMPLETADA' %}">{% csrf_token %}<button class="citas-boton citas-boton--chico" type="submit">Completar</button></form>
             {% endif %}
-            {% if c.estado == "PENDIENTE" or c.estado == "CONFIRMADA" %}
-              <form method="post" action="{% url 'citas_estado' c.pk 'CANCELADA' %}" data-confirm="¿Cancelar esta cita?">{% csrf_token %}<button class="citas-boton citas-boton--peligro citas-boton--chico" type="submit">Cancelar</button></form>
+            {% if rol == "administrador" %}
+              {% if c.estado == "PENDIENTE" or c.estado == "CONFIRMADA" %}
+                <form method="post" action="{% url 'citas_estado' c.pk 'CANCELADA' %}" data-confirm="¿Cancelar esta cita?">{% csrf_token %}<button class="citas-boton citas-boton--peligro citas-boton--chico" type="submit">Cancelar</button></form>
+              {% endif %}
             {% endif %}
           </td>
         </tr>
@@ -81,5 +86,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'citas/js/citas.js' %}"></script>
+<script src="{% static 'js/citas.js' %}"></script>
 {% endblock %}

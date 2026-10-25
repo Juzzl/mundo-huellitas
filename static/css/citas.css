@@ -397,3 +397,57 @@
         transform: none;
     }
 }
+
+/* login, perfil y secciones */
+.citas-formulario--angosto {
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+.citas-seccion {
+    margin-bottom: 1.5rem;
+}
+
+.citas-titulo,
+.citas-subtitulo {
+    color: var(--verde-profundo);
+    font-weight: 750;
+}
+
+.citas-titulo {
+    margin: 0 0 1.2rem;
+}
+
+.citas-subtitulo {
+    margin: 0 0 1rem;
+    font-size: 1.3rem;
+}
+
+.citas-subtitulo--tabla {
+    margin-top: 2rem;
+}
+
+.citas-campo--separado {
+    margin-top: 1rem;
+}
+
+.citas-datos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem 2rem;
+    margin: 0;
+}
+
+.citas-datos dt {
+    color: var(--verde-profundo);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.citas-datos dd {
+    margin: 0.25rem 0 0;
+    color: var(--cafe-oscuro);
+    font-size: 1.05rem;
+}

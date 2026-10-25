@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block titulo %}Mi perfil · Mi Mundo de Huellitas{% endblock %}
+
+{% block contenido %}
+<div class="pagina-citas">
+
+  <section class="citas-bienvenida">
+    <div>
+      <span class="citas-bienvenida__etiqueta">Mi cuenta</span>
+      <h1>Hola, {{ nombre }}</h1>
+      <p>Estos son tus datos en Mi Mundo de Huellitas.</p>
+    </div>
+    <div class="citas-bienvenida__adorno" aria-hidden="true">🐾</div>
+  </section>
+
+  <section class="citas-formulario citas-seccion">
+    <h2 class="citas-subtitulo">Mi cuenta</h2>
+    <dl class="citas-datos">
+      <div><dt>Usuario</dt><dd>{{ user.username }}</dd></div>
+      <div><dt>Tipo de cuenta</dt><dd>{{ rol|default:"Sin rol asignado"|title }}</dd></div>
+      <div><dt>Cuenta creada</dt><dd>{{ user.date_joined|date:"d/m/Y" }}</dd></div>
+      <div><dt>Último acceso</dt><dd>{{ user.last_login|date:"d/m/Y H:i"|default:"—" }}</dd></div>
+    </dl>
+  </section>
+
+  {% if cliente %}
+    <section class="citas-formulario citas-seccion">
+      <h2 class="citas-subtitulo">Mis datos</h2>
+      <dl class="citas-datos">
+        <div><dt>Nombre</dt><dd>{{ cliente.nombre }}</dd></div>
+        <div><dt>Teléfono</dt><dd>{{ cliente.telefono }}</dd></div>
+        <div><dt>Correo</dt><dd>{{ cliente.email|default:"Sin registrar" }}</dd></div>
+        <div><dt>Dirección</dt><dd>{{ cliente.direccion|default:"Sin registrar" }}</dd></div>
+      </dl>
+    </section>
+
+    <h2 class="citas-subtitulo citas-subtitulo--tabla">Mis mascotas</h2>
+    <div class="citas-tabla-contenedor">
+      <table class="citas-tabla">
+        <thead>
+          <tr><th>Nombre</th><th>Especie</th><th>Raza</th><th>Tamaño</th></tr>
+        </thead>
+        <tbody>
+        {% for m in mascotas %}
+          <tr>
+            <td data-label="Nombre">{{ m.nombre }}</td>
+            <td data-label="Especie">{{ m.especie }}</td>
+            <td data-label="Raza">{{ m.raza|default:"—" }}</td>
+            <td data-label="Tamaño">{{ m.get_tamano_display|default:"—" }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4" class="citas-vacio">Todavía no tienes mascotas registradas.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="citas-subtitulo citas-subtitulo--tabla">Mis citas</h2>
+    <div class="citas-tabla-contenedor">
+      <table class="citas-tabla">
+        <thead>
+          <tr><th>Fecha</th><th>Horario</th><th>Mascota</th><th>Servicio</th><th>Estado</th></tr>
+        </thead>
+        <tbody>
+        {% for c in citas %}
+          <tr>
+            <td data-label="Fecha">{{ c.fecha_hora_inicio|date:"d/m/Y" }}</td>
+            <td data-label="Horario">{{ c.fecha_hora_inicio|time:"H:i" }} – {{ c.fecha_hora_fin|time:"H:i" }}</td>
+            <td data-label="Mascota">{{ c.mascota.nombre }}</td>
+            <td data-label="Servicio">{{ c.servicio.nombre }}</td>
+            <td data-label="Estado"><span class="citas-estado citas-estado--{{ c.estado }}">{{ c.get_estado_display }}</span></td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5" class="citas-vacio">Todavía no tienes citas.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% elif rol == "cliente" %}
+    <p class="citas-mensaje">Tu cuenta todavía no está vinculada a un cliente. Pide al administrador que la vincule para ver tus mascotas y citas.</p>
+  {% endif %}
+
+  {% if empleado %}
+    <section class="citas-formulario citas-seccion">
+      <h2 class="citas-subtitulo">Mi puesto</h2>
+      <dl class="citas-datos">
+        <div><dt>Nombre</dt><dd>{{ empleado.nombre }}</dd></div>
+        <div><dt>Puesto</dt><dd>{{ empleado.get_rol_display }}</dd></div>
+        <div><dt>Teléfono</dt><dd>{{ empleado.telefono|default:"Sin registrar" }}</dd></div>
+      </dl>
+    </section>
+  {% endif %}
+
+  <div class="citas-formulario__acciones">
+    <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button class="citas-boton citas-boton--suave" type="submit">Cerrar sesión</button>
+    </form>
+  </div>
+
+</div>
+{% endblock %}

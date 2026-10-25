@@ -64,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'citas.roles.contexto_rol',
             ],
         },
     },
@@ -119,6 +120,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+
+# Inicio de sesión
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'redireccion_rol'
+LOGOUT_REDIRECT_URL = 'login'
 
 
 # Email
