@@ -7,6 +7,9 @@ from django.views.decorators.http import require_POST
 from .forms import CitaForm, a_local, cierre
 from .models import Cita
 from .roles import ADMIN, PERSONAL, rol_de, rol_requerido
+from .correos import notificar_cita
+
+AVISO_CORREO = " Se notificó al cliente por correo."
 
 def citas(request):
     return redirect("citas_lista")
@@ -35,8 +38,11 @@ def lista_citas(request):
 def crear_cita(request):
     form = CitaForm(request.POST or None)
     if request.method == "POST" and form.is_valid():
-        form.save()
-        messages.success(request, "Cita agendada correctamente.")
+        cita = form.save()
+        mensaje = "Cita agendada correctamente."
+        if notificar_cita(cita, "creada"):
+            mensaje += AVISO_CORREO
+        messages.success(request, mensaje)
         return redirect("citas_lista")
     return render(request, "citas/form.html", {"form": form, "titulo": "Nueva cita"})
 
@@ -45,8 +51,11 @@ def editar_cita(request, pk):
     cita = get_object_or_404(Cita, pk=pk)
     form = CitaForm(request.POST or None, instance=cita)
     if request.method == "POST" and form.is_valid():
-        form.save()
-        messages.success(request, "Cita actualizada correctamente.")
+        cita = form.save()
+        mensaje = "Cita actualizada correctamente."
+        if notificar_cita(cita, "editada"):
+            mensaje += AVISO_CORREO
+        messages.success(request, mensaje)
         return redirect("citas_lista")
     return render(request, "citas/form.html", {"form": form, "titulo": "Editar cita"})
 
@@ -63,7 +72,11 @@ def cambiar_estado(request, pk, estado):
             raise PermissionDenied
     cita.estado = estado
     cita.save(update_fields=["estado"])
-    messages.success(request, f"Cita marcada como {cita.get_estado_display().lower()}.")
+    mensaje = f"Cita marcada como {cita.get_estado_display().lower()}."
+    accion = "cancelada" if estado == "CANCELADA" else "estado"
+    if notificar_cita(cita, accion):
+        mensaje += AVISO_CORREO
+    messages.success(request, mensaje)
     return redirect("citas_lista")
 
 @rol_requerido(ADMIN)
