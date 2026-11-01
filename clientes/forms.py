@@ -2,6 +2,8 @@ import re
 from datetime import date
 from django import forms
 from .models import Cliente, Mascota
+from django import forms
+from .models import Cliente, Mascota
 
 class ClienteForm(forms.ModelForm):
     class Meta:
