@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · Mi Mundo de Huellitas{% endblock %}
+
+{% block contenido %}
+<div class="pagina-clientes">
+
+  <section class="clientes-bienvenida">
+    <div>
+      <span class="clientes-bienvenida__etiqueta">{{ etiqueta }}</span>
+      <h1>{{ titulo }}</h1>
+      <p>{{ descripcion }}</p>
+    </div>
+    <div class="clientes-bienvenida__adorno" aria-hidden="true">🐕</div>
+  </section>
+
+  <form method="post" class="clientes-formulario" novalidate>
+    {% csrf_token %}
+    {% for e in form.non_field_errors %}<p class="clientes-error">{{ e }}</p>{% endfor %}
+
+    <div class="clientes-formulario__rejilla">
+      {% for campo in form %}
+        <div class="clientes-campo {% if campo.name == 'notas' or campo.name == 'direccion' %}clientes-campo--ancho{% endif %} {% if campo.errors %}clientes-campo--error{% endif %}">
+          <label for="{{ campo.id_for_label }}">{{ campo.label }}{% if not campo.field.required %} (opcional){% endif %}</label>
+          {{ campo }}
+          {% if campo.help_text %}<span class="clientes-ayuda">{{ campo.help_text }}</span>{% endif %}
+          {% for e in campo.errors %}<span class="clientes-error">{{ e }}</span>{% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="clientes-formulario__acciones">
+      <a class="clientes-boton clientes-boton--suave" href="{{ volver }}">Cancelar</a>
+      <button class="clientes-boton" type="submit">Guardar</button>
+    </div>
+  </form>
+
+</div>
+{% endblock %}

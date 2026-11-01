@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block titulo %}Clientes · Mi Mundo de Huellitas{% endblock %}
+
+{% block contenido %}
+<div class="pagina-clientes">
+
+  <section class="clientes-bienvenida">
+    <div>
+      <span class="clientes-bienvenida__etiqueta">Clientes</span>
+      <h1>Clientes y mascotas</h1>
+      <p>Registra a los dueños y a sus mascotas, y consulta el historial de citas de cada uno.</p>
+      {% if rol == "administrador" %}
+        <a class="clientes-boton" href="{% url 'clientes_crear' %}">+ Nuevo cliente</a>
+      {% endif %}
+    </div>
+    <div class="clientes-bienvenida__adorno" aria-hidden="true">🐕</div>
+  </section>
+
+  {% include "clientes/_mensajes.html" %}
+
+  <form method="get" class="clientes-buscador">
+    <label class="clientes-buscador__campo">Buscar
+      <input type="search" name="q" value="{{ q }}" placeholder="Nombre, teléfono, correo o nombre de mascota">
+    </label>
+    <button class="clientes-boton" type="submit">Buscar</button>
+    <a class="clientes-boton clientes-boton--suave" href="{% url 'clientes' %}">Limpiar</a>
+  </form>
+
+  <div class="clientes-tabla-contenedor">
+    <table class="clientes-tabla">
+      <thead>
+        <tr><th>Nombre</th><th>Teléfono</th><th>Correo</th><th>Mascotas</th><th>Acciones</th></tr>
+      </thead>
+      <tbody>
+      {% for c in pagina %}
+        <tr>
+          <td data-label="Nombre"><a class="clientes-enlace" href="{% url 'clientes_detalle' c.pk %}">{{ c.nombre }}</a></td>
+          <td data-label="Teléfono">{{ c.telefono }}</td>
+          <td data-label="Correo">{% if c.email %}{{ c.email }}{% else %}<span class="clientes-suave">Sin correo</span>{% endif %}</td>
+          <td data-label="Mascotas">{{ c.total_mascotas }}</td>
+          <td data-label="Acciones" class="clientes-acciones">
+            <a class="clientes-boton clientes-boton--suave clientes-boton--chico" href="{% url 'clientes_detalle' c.pk %}">Ver ficha</a>
+            {% if rol == "administrador" %}
+              <a class="clientes-boton clientes-boton--suave clientes-boton--chico" href="{% url 'clientes_editar' c.pk %}">Editar</a>
+            {% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5" class="clientes-vacio">
+          {% if q %}No se encontraron clientes para "{{ q }}".{% else %}Todavía no hay clientes registrados.{% endif %}
+        </td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% if pagina.has_other_pages %}
+    <nav class="clientes-paginacion" aria-label="Paginación">
+      {% if pagina.has_previous %}
+        <a class="clientes-boton clientes-boton--suave clientes-boton--chico" href="?{% if q %}q={{ q|urlencode }}&amp;{% endif %}page={{ pagina.previous_page_number }}">Anterior</a>
+      {% endif %}
+      <span>Página {{ pagina.number }} de {{ pagina.paginator.num_pages }}</span>
+      {% if pagina.has_next %}
+        <a class="clientes-boton clientes-boton--suave clientes-boton--chico" href="?{% if q %}q={{ q|urlencode }}&amp;{% endif %}page={{ pagina.next_page_number }}">Siguiente</a>
+      {% endif %}
+    </nav>
+  {% endif %}
+
+</div>
+{% endblock %}
