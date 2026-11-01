@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{{ asunto }}</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f7f5f2; font-family:Arial, Helvetica, sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f7f5f2; padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="560" cellpadding="0" cellspacing="0" style="background-color:#ffffff; border-radius:16px; overflow:hidden; border:1px solid #d9e5d7;">
+
+          <!-- Encabezado -->
+          <tr>
+            <td style="background-color:#4a7c59; padding:24px; text-align:center;">
+              <h1 style="margin:0; color:#ffffff; font-size:22px;">Mi Mundo de Huellitas</h1>
+            </td>
+          </tr>
+
+          <!-- Saludo -->
+          <tr>
+            <td style="padding:28px 28px 8px 28px; color:#315a43;">
+              <h2 style="margin:0 0 12px 0; font-size:20px;">{{ asunto }}</h2>
+              <p style="margin:0; font-size:15px; color:#536658;">
+                Hola {{ cliente }}, te informamos que {{ frase }} de <strong>{{ mascota }}</strong>.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Detalle de la cita -->
+          <tr>
+            <td style="padding:16px 28px;">
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color:#e9efe6; border-radius:12px; font-size:15px; color:#315a43;">
+                <tr><td width="35%"><strong>Servicio</strong></td><td>{{ servicio }}</td></tr>
+                <tr><td><strong>Fecha</strong></td><td>{{ inicio|date:"d/m/Y" }}</td></tr>
+                <tr><td><strong>Hora</strong></td><td>{{ inicio|date:"h:i A" }} a {{ fin|date:"h:i A" }}</td></tr>
+                <tr><td><strong>Atiende</strong></td><td>{{ empleado }}</td></tr>
+                <tr><td><strong>Estado</strong></td><td><strong>{{ estado }}</strong></td></tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Pie -->
+          <tr>
+            <td style="padding:16px 28px 28px 28px; font-size:14px; color:#536658;">
+              Gracias por confiar en Mi Mundo de Huellitas.
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#f7f5f2; padding:14px; text-align:center; font-size:12px; color:#8a9a8f;">
+              Este es un correo automático, por favor no respondas a este mensaje.
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
